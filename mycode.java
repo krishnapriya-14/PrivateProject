@@ -18,7 +18,7 @@ public class SecondLargest {
     }
 
     public static void main(String[] args) {
-        int[] arr = {12, 35, 1, 10, 34, 1};
+int[] arr = {12, 35, 1, 10, 34, 1, 99};
 
         OptionalInt result = secondLargest(arr);
         if (result.isPresent()) {
@@ -26,6 +26,7 @@ public class SecondLargest {
         } else {
             System.out.println("No second largest element.");
         }
+        System.out.println("Starting SecondLargest program...");
+
     }
 }
-EOF

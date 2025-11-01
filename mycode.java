@@ -1,21 +1,31 @@
+
 import java.util.*;
 
 public class SecondLargest {
-    public static void main(String[] args) {
-        int[] arr = {12, 35, 1, 10, 34, 1};
-        Arrays.sort(arr);
-        int n = arr.length;
-        if (n < 2) {
-            System.out.println("No second largest element.");
-            return;
-        }
-        int largest = arr[n - 1];
-        for (int i = n - 2; i >= 0; i--) {
-            if (arr[i] != largest) {
-                System.out.println("Second largest: " + arr[i]);
-                return;
+    private static OptionalInt secondLargest(int[] arr) {
+        if (arr == null || arr.length < 2) return OptionalInt.empty();
+
+        Integer max = null, second = null;
+        for (int x : arr) {
+            if (max == null || x > max) {
+                second = max;
+                max = x;
+            } else if (x != max && (second == null || x > second)) {
+                second = x;
             }
         }
-        System.out.println("No second largest element.");
+        return (second == null) ? OptionalInt.empty() : OptionalInt.of(second);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, 35, 1, 10, 34, 1};
+
+        OptionalInt result = secondLargest(arr);
+        if (result.isPresent()) {
+            System.out.println("Second largest: " + result.getAsInt());
+        } else {
+            System.out.println("No second largest element.");
+        }
     }
 }
+EOF
